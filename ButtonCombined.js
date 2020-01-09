@@ -55,10 +55,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function InnerButton({ icon, text, firstChild }) {
+function InnerButton({ icon, text, firstChild, onPress }) {
   const [active, setActive] = useState(false);
   const handlePressStart = useCallback(() => {
     setActive(true);
+    if (onPress) onPress();
   }, []);
   const handlePressEnd = useCallback(() => {
     setActive(false);
@@ -86,7 +87,7 @@ export default function ButtonCombined({ buttons = [] }) {
   return (
     <View style={styles.buttonCombined}>
       {buttons.map((button, index) => (
-        <InnerButton key={index} icon={button.icon} text={button.text} firstChild={index === 0} />
+        <InnerButton key={index} icon={button.icon} text={button.text} firstChild={index === 0} onPress={button.onPress} />
       ))}
     </View>
   );
