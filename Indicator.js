@@ -30,12 +30,15 @@ const flash = {
     backgroundColor: activeColor,
     scale: 1,
   },
-  0.3: {
-    backgroundColor: 'hsl(100,100%,90%)',
+  0.25: {
+    backgroundColor: 'hsl(70,80%,90%)',
     scale: 1.6,
   },
   0.5: {
-    backgroundColor: 'hsl(60,70%,50%)',
+    backgroundColor: 'hsl(50,70%,50%)',
+  },
+  0.75: {
+    backgroundColor: 'hsl(-20,60%,50%)',
   },
   1: {
     backgroundColor: activeColor,

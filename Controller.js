@@ -39,7 +39,7 @@ export default function Controller() {
   const [sending, setSending] = useState(false);
   const handlePress = useCallback(() => {
     setSending(true);
-    setTimeout(() => setSending(false), 600);
+    setTimeout(() => setSending(false), 700);
   }, []);
   return (
     <View style={styles.controller}>
