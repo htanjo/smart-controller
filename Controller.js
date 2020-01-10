@@ -5,8 +5,8 @@ import Button from './Button';
 import ButtonStacked from './ButtonStacked';
 import ButtonCombined from './ButtonCombined';
 import { gutterSize } from './styles';
+import { apiUrl } from './config';
 
-const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 const sendInterval = 200;   // milliseconds
 const styles = StyleSheet.create({
   controller: {
@@ -54,19 +54,20 @@ async function sendCommand(command) {
   }
 }
 
-export default function Controller() {
+export default function Controller({ connected }) {
   const [sending, setSending] = useState(false);
   const handlePress = useCallback(async command => {
-    if (sending) return;
-    setSending(true);
-    setTimeout(() => setSending(false), sendInterval);
-    Vibration.vibrate(60);
-    await sendCommand(command);
-  }, [sending]);
+    if (connected && !sending) {
+      setSending(true);
+      setTimeout(() => setSending(false), sendInterval);
+      Vibration.vibrate(60);
+      await sendCommand(command);
+    }
+  }, [connected, sending]);
   return (
     <View style={styles.controller}>
       <View style={styles.indicator}>
-        <Indicator sending={sending} />
+        <Indicator sending={sending} error={!connected} />
       </View>
       <View style={styles.buttons}>
         <View style={styles.row}>

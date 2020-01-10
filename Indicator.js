@@ -4,6 +4,7 @@ import * as Animatable from 'react-native-animatable';
 import { vw } from 'react-native-expo-viewport-units';
 
 const activeColor = 'hsl(190,50%,40%)';
+const errorColor = 'hsl(350,55%,50%)';
 const styles = StyleSheet.create({
   indicator: {
     paddingTop: vw(8),
@@ -22,7 +23,9 @@ const styles = StyleSheet.create({
     height: vw(2),
     borderRadius: vw(1),
     backgroundColor: activeColor,
-    // backgroundColor: '#2c2c2c',
+  },
+  indicatorLedError: {
+    backgroundColor: errorColor,
   },
 });
 const flash = {
@@ -46,7 +49,7 @@ const flash = {
   },
 };
 
-export default function Indicator({ sending }) {
+export default function Indicator({ sending, error }) {
   const [animating, setAnimating] = useState(false);
   // (Re)play animation when "sending" prop changes to true.
   useEffect(() => {
@@ -71,11 +74,11 @@ export default function Indicator({ sending }) {
             <Animatable.View animation={flash} duration={600} delay={100} style={styles.indicatorLed} />
           </Fragment> :
           <Fragment>
-            <View style={styles.indicatorLed} />
-            <View style={styles.indicatorLed} />
-            <View style={styles.indicatorLed} />
-            <View style={styles.indicatorLed} />
-            <View style={styles.indicatorLed} />
+            <View style={[styles.indicatorLed, error && styles.indicatorLedError]} />
+            <View style={[styles.indicatorLed, error && styles.indicatorLedError]} />
+            <View style={[styles.indicatorLed, error && styles.indicatorLedError]} />
+            <View style={[styles.indicatorLed, error && styles.indicatorLedError]} />
+            <View style={[styles.indicatorLed, error && styles.indicatorLedError]} />
           </Fragment>
         }
       </View>
