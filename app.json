@@ -27,7 +27,7 @@
       "supportsTablet": true
     },
     "android": {
-      "peremissions": [
+      "permissions": [
         "VIBRATE"
       ]
     },
