@@ -34,14 +34,14 @@ const flash = {
     scale: 1,
   },
   0.25: {
-    backgroundColor: 'hsl(70,80%,90%)',
+    backgroundColor: 'hsl(70,70%,90%)',
     scale: 1.6,
   },
   0.5: {
-    backgroundColor: 'hsl(50,70%,50%)',
+    backgroundColor: 'hsl(50,65%,50%)',
   },
   0.75: {
-    backgroundColor: 'hsl(-20,60%,50%)',
+    backgroundColor: 'hsl(-20,55%,50%)',
   },
   1: {
     backgroundColor: activeColor,
