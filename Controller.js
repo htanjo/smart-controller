@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Vibration } from 'react-native';
 import Indicator from './Indicator';
 import Button from './Button';
 import ButtonStacked from './ButtonStacked';
 import ButtonCombined from './ButtonCombined';
 import { gutterSize } from './styles';
 
-const sendInterval = 700;   // ms
+const sendInterval = 200;   // milliseconds
 const styles = StyleSheet.create({
   controller: {
     flex: 1,
@@ -42,6 +42,7 @@ export default function Controller() {
     if (sending) return;
     setSending(true);
     setTimeout(() => setSending(false), sendInterval);
+    Vibration.vibrate(60);
   }, [sending]);
   return (
     <View style={styles.controller}>

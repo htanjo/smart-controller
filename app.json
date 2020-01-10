@@ -26,6 +26,11 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "peremissions": [
+        "VIBRATE"
+      ]
+    },
     "androidStatusBar": {
       "backgroundColor": "#202020"
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback, useEffect, Fragment } from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { vw } from 'react-native-expo-viewport-units';
@@ -47,28 +47,36 @@ const flash = {
 };
 
 export default function Indicator({ sending }) {
+  const [animating, setAnimating] = useState(false);
+  // (Re)play animation when "sending" prop changes to true.
+  useEffect(() => {
+    if (sending) {
+      setAnimating(false);
+      setTimeout(() => setAnimating(true), 0);
+    }
+  }, [sending]);
+  // Finish animation when "onAnimationEnd" triggered.
+  const handleAnimationEnd = useCallback(() => {
+    setAnimating(false);
+  }, []);
   return (
     <View style={styles.indicator}>
       <View style={styles.indicatorRow}>
-        {sending ?
-          <Animatable.View animation={flash} duration={600} delay={100} style={styles.indicatorLed} /> :
-          <View style={styles.indicatorLed} />
-        }
-        {sending ?
-          <Animatable.View animation={flash} duration={600} delay={50} style={styles.indicatorLed} /> :
-          <View style={styles.indicatorLed} />
-        }
-        {sending ?
-          <Animatable.View animation={flash} duration={600} delay={0} style={styles.indicatorLed} /> :
-          <View style={styles.indicatorLed} />
-        }
-        {sending ?
-          <Animatable.View animation={flash} duration={600} delay={50} style={styles.indicatorLed} /> :
-          <View style={styles.indicatorLed} />
-        }
-        {sending ?
-          <Animatable.View animation={flash} duration={600} delay={100} style={styles.indicatorLed} /> :
-          <View style={styles.indicatorLed} />
+        {animating ?
+          <Fragment>
+            <Animatable.View animation={flash} duration={600} delay={100} style={styles.indicatorLed} onAnimationEnd={handleAnimationEnd} />
+            <Animatable.View animation={flash} duration={600} delay={50} style={styles.indicatorLed} />
+            <Animatable.View animation={flash} duration={600} delay={0} style={styles.indicatorLed} />
+            <Animatable.View animation={flash} duration={600} delay={50} style={styles.indicatorLed} />
+            <Animatable.View animation={flash} duration={600} delay={100} style={styles.indicatorLed} />
+          </Fragment> :
+          <Fragment>
+            <View style={styles.indicatorLed} />
+            <View style={styles.indicatorLed} />
+            <View style={styles.indicatorLed} />
+            <View style={styles.indicatorLed} />
+            <View style={styles.indicatorLed} />
+          </Fragment>
         }
       </View>
     </View>
