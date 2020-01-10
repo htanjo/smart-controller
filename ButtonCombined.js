@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
 
 function InnerButton({ icon, text, firstChild, onPress }) {
   const [active, setActive] = useState(false);
-  const handlePressStart = useCallback(() => {
+  const handlePressStart = useCallback(event => {
     setActive(true);
-    if (onPress) onPress();
-  }, []);
+    if (onPress) onPress(event);
+  }, [onPress]);
   const handlePressEnd = useCallback(() => {
     setActive(false);
   }, []);

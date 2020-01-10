@@ -6,6 +6,7 @@ import ButtonStacked from './ButtonStacked';
 import ButtonCombined from './ButtonCombined';
 import { gutterSize } from './styles';
 
+const sendInterval = 700;   // ms
 const styles = StyleSheet.create({
   controller: {
     flex: 1,
@@ -38,9 +39,10 @@ const styles = StyleSheet.create({
 export default function Controller() {
   const [sending, setSending] = useState(false);
   const handlePress = useCallback(() => {
+    if (sending) return;
     setSending(true);
-    setTimeout(() => setSending(false), 700);
-  }, []);
+    setTimeout(() => setSending(false), sendInterval);
+  }, [sending]);
   return (
     <View style={styles.controller}>
       <View style={styles.indicator}>
