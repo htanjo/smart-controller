@@ -1,9 +1,11 @@
 import React, { useState, useCallback } from 'react';
 import { StyleSheet, View, Vibration } from 'react-native';
+import { vw } from 'react-native-expo-viewport-units';
 import Indicator from './Indicator';
 import Button from './Button';
 import ButtonStacked from './ButtonStacked';
 import ButtonCombined from './ButtonCombined';
+import Action from './Action';
 import { gutterSize } from './styles';
 import { apiUrl } from './config';
 
@@ -17,6 +19,8 @@ const styles = StyleSheet.create({
   },
   indicator: {
     flexGrow: 1,
+    paddingTop: vw(8),
+    paddingBottom: vw(2),
   },
   buttons: {
     flex: 0,
@@ -32,8 +36,11 @@ const styles = StyleSheet.create({
     marginVertical: gutterSize / 2,
     marginHorizontal: gutterSize,
   },
-  spacer: {
+  action: {
     flexGrow: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    paddingBottom: vw(4),
   },
 });
 
@@ -54,7 +61,7 @@ async function sendCommand(command) {
   }
 }
 
-export default function Controller({ connected }) {
+export default function Controller({ connected, onPressSetting }) {
   const [sending, setSending] = useState(false);
   const handlePress = useCallback(async command => {
     if (connected && !sending) {
@@ -97,7 +104,9 @@ export default function Controller({ connected }) {
           ]} />
         </View>
       </View>
-      <View style={styles.spacer} />
+      <View style={styles.action}>
+        <Action icon="ios-settings" onPress={onPressSetting} />
+      </View>
     </View>
   );
 }

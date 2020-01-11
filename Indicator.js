@@ -7,7 +7,6 @@ const activeColor = 'hsl(190,50%,40%)';
 const errorColor = 'hsl(350,55%,50%)';
 const styles = StyleSheet.create({
   indicator: {
-    paddingTop: vw(8),
     alignItems: 'center',
     justifyContent: 'center',
   },
