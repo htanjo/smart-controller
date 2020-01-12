@@ -7,7 +7,6 @@ import ButtonStacked from './ButtonStacked';
 import ButtonCombined from './ButtonCombined';
 import Action from './Action';
 import { gutterSize } from './styles';
-import { apiUrl } from './config';
 
 const sendInterval = 200;   // milliseconds
 const styles = StyleSheet.create({
@@ -44,7 +43,7 @@ const styles = StyleSheet.create({
   },
 });
 
-async function sendCommand(command) {
+async function sendCommand(api, command) {
   const method = 'POST';
   const headers = {
     'Accept': 'application/json',
@@ -53,7 +52,7 @@ async function sendCommand(command) {
   const payload = { command };
   const body = JSON.stringify(payload);
   try {
-    const response = await fetch(apiUrl, { method, headers, body });
+    const response = await fetch(api, { method, headers, body });
     const data = await response.json();
     console.log(data);
   } catch (error) {
@@ -61,16 +60,16 @@ async function sendCommand(command) {
   }
 }
 
-export default function Controller({ connected, onPressSetting }) {
+export default function Controller({ api, vibration, connected, onPressSetting }) {
   const [sending, setSending] = useState(false);
   const handlePress = useCallback(async command => {
     if (connected && !sending) {
       setSending(true);
       setTimeout(() => setSending(false), sendInterval);
-      Vibration.vibrate(60);
-      await sendCommand(command);
+      if (vibration) Vibration.vibrate(60);
+      await sendCommand(api, command);
     }
-  }, [connected, sending]);
+  }, [api, vibration, connected, sending]);
   return (
     <View style={styles.controller}>
       <View style={styles.indicator}>
