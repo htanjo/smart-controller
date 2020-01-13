@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import { NetworkProvider, NetworkConsumer } from 'react-native-offline';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Modal from "react-native-modal";
 import { throttle } from 'lodash';
 import Controller from './Controller';
@@ -12,11 +13,13 @@ const defaultSettings = {
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
+    paddingTop: getStatusBarHeight(),
     backgroundColor: '#202020',
   },
   modal: {
     margin: 0,
+    justifyContent: 'flex-end',
   },
 });
 
@@ -51,8 +54,10 @@ export default function App() {
         isVisible={settingVisible}
         animationInTiming={250}
         animationOutTiming={250}
-        hasBackdrop={false}
+        hasBackdrop={true}
+        useNativeDriver={true}
         onBackButtonPress={hideSetting}
+        onBackdropPress={hideSetting}
         style={styles.modal}
       >
         <Setting

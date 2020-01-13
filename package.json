@@ -17,6 +17,7 @@
     "react-native-expo-viewport-units": "^0.0.8",
     "react-native-modal": "^11.5.3",
     "react-native-offline": "^5.2.0",
+    "react-native-status-bar-height": "^2.4.0",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {

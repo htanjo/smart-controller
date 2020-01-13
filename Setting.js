@@ -1,15 +1,13 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { StyleSheet, SafeAreaView, ScrollView, View, Text, TextInput, Switch } from 'react-native';
+import { StyleSheet, ScrollView, View, Text, TextInput, Switch } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import Action from './Action';
 
 const styles = StyleSheet.create({
   setting: {
-    flex: 1,
     backgroundColor: '#363636',
   },
   scrollView: {
-    flex: 1,
     flexDirection: 'column',
     alignItems: 'stretch',
     justifyContent: 'space-between',
@@ -17,7 +15,10 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     justifyContent: 'center',
-    padding: 20,
+    paddingTop: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 10,
   },
   formGroup: {
     marginTop: 8,
@@ -76,7 +77,7 @@ export default function Setting({ settings, onChange, onClose }) {
   }, []);
   useEffect(() => onChange(settingsState), [settingsState]);
   return (
-    <SafeAreaView style={styles.setting}>
+    <View style={styles.setting}>
       <ScrollView keyboardShouldPersistTaps="never" contentContainerStyle={styles.scrollView}>
         <View style={styles.form}>
           <View style={styles.formGroup}>
@@ -92,6 +93,6 @@ export default function Setting({ settings, onChange, onClose }) {
           <Action icon="ios-arrow-down" onPress={onClose} />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
