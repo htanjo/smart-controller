@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   form: {
-    flex: 1,
     justifyContent: 'center',
     paddingTop: 10,
     paddingLeft: 20,
