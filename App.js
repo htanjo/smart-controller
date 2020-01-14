@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
+import React, { useState, useCallback, useEffect } from 'react';
+import { StyleSheet, AsyncStorage, StatusBar, SafeAreaView } from 'react-native';
 import { NetworkProvider, NetworkConsumer } from 'react-native-offline';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Modal from "react-native-modal";
@@ -25,16 +25,36 @@ const styles = StyleSheet.create({
 
 export default function App() {
   const [settingVisible, setSettingVisible] = useState(false);
-  const [settings, setSettings] = useState(defaultSettings);
+  const [settings, setSettings] = useState(null);
   const showSetting = useCallback(() => {
     setSettingVisible(true);
   }, []);
   const hideSetting = useCallback(() => {
     setSettingVisible(false);
   }, []);
-  const updateSettings = useCallback(throttle(values => {
+  const readSettings = useCallback(async () => {
+    let storedSettings = null;
+    try {
+      storedSettings = JSON.parse(await AsyncStorage.getItem('settings'));
+    } catch (error) {
+      console.error(error);
+    }
+    const activeSettings = Object.assign({}, defaultSettings, storedSettings);
+    setTimeout(() => setSettings(activeSettings), 10);
+  }, []);
+  const updateSettings = useCallback(throttle(async values => {
+    try {
+      await AsyncStorage.setItem('settings', JSON.stringify(values));
+    }
+    catch (error) {
+      console.error(error);
+    }
     setSettings(values);
-  }, 1000), [])
+  }, 1000), []);
+  useEffect(() => {
+    readSettings();
+  }, []);
+  if (!settings) return null;
   return (
     <NetworkProvider pingServerUrl={settings.api}>
       <StatusBar barStyle="light-content" />

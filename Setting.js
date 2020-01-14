@@ -74,7 +74,9 @@ export default function Setting({ settings, onChange, onClose }) {
       return { ...settingsState, [name]: value };
     });
   }, []);
-  useEffect(() => onChange(settingsState), [settingsState]);
+  useEffect(() => {
+    onChange(settingsState);
+  }, [settingsState]);
   return (
     <View style={styles.setting}>
       <ScrollView keyboardShouldPersistTaps="never" contentContainerStyle={styles.scrollView}>
