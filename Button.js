@@ -55,7 +55,6 @@ export default function Controller({ icon, text, onPress }) {
       underlayColor={buttonColorActive}
       onPressIn={handlePressStart}
       onPressOut={handlePressEnd}
-      // onPress={() => console.log('pressed')}
     >
       <View style={[styles.button, active && styles.buttonActive]}>
         {icon && <Ionicons name={icon} style={[styles.buttonIcon, active && styles.buttonIconActive]} />}

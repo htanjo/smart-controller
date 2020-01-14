@@ -70,7 +70,6 @@ function InnerButton({ icon, text, firstChild, onPress }) {
       underlayColor={buttonColorActive}
       onPressIn={handlePressStart}
       onPressOut={handlePressEnd}
-      // onPress={() => console.log('pressed')}
     >
       <View style={[
         firstChild ? styles.buttonStackedInnerFirst : styles.buttonStackedInnerLast,
