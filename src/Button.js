@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Controller({ icon, text, onPress }) {
+export default function Button({ icon, text, onPress }) {
   const [active, setActive] = useState(false);
   const handlePressStart = useCallback(event => {
     setActive(true);
