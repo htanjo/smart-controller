@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { StyleSheet, View, Vibration } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
+import { throttle } from 'lodash';
 import Indicator from './Indicator';
 import Button from './Button';
 import ButtonGroup from './ButtonGroup';
@@ -60,19 +61,18 @@ async function sendCommand(api, command) {
 }
 
 export default function Controller({ api, vibration, connected, onPressSetting }) {
-  const [sending, setSending] = useState(false);
-  const handlePress = useCallback(async command => {
-    if (connected && !sending) {
-      setSending(true);
-      setTimeout(() => setSending(false), sendInterval);
+  const indicator = useRef(null);
+  const handlePress = useCallback(throttle(async command => {
+    if (connected) {
+      indicator.current.animate();
       if (vibration) Vibration.vibrate(60);
       await sendCommand(api, command);
     }
-  }, [api, vibration, connected, sending]);
+  }, sendInterval), [api, vibration, connected]);
   return (
     <View style={styles.controller}>
       <View style={styles.indicator}>
-        <Indicator sending={sending} error={!connected} />
+        <Indicator ref={indicator} error={!connected} />
       </View>
       <View style={styles.buttons}>
         <View style={styles.row}>

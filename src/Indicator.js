@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, Fragment } from 'react';
+import React, { useState, useCallback, useImperativeHandle, forwardRef, Fragment } from 'react';
 import { StyleSheet, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { vw } from 'react-native-expo-viewport-units';
@@ -48,15 +48,15 @@ const flash = {
   },
 };
 
-export default function Indicator({ sending, error }) {
+function Indicator({ sending, error }, ref) {
   const [animating, setAnimating] = useState(false);
-  // (Re)play animation when "sending" prop changes to true.
-  useEffect(() => {
-    if (sending) {
+  // (Re)play animation when "animate()" method called.
+  useImperativeHandle(ref, () => ({
+    animate: () => {
       setAnimating(false);
       setTimeout(() => setAnimating(true), 0);
-    }
-  }, [sending]);
+    },
+  }));
   // Finish animation when "onAnimationEnd" triggered.
   const handleAnimationEnd = useCallback(() => {
     setAnimating(false);
@@ -84,3 +84,4 @@ export default function Indicator({ sending, error }) {
     </View>
   );
 }
+export default forwardRef(Indicator);
