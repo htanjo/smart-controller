@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Button({ icon, text, onPress }) {
+export default function Button({ icon, text, style, activeStyle, onPress }) {
   const [active, setActive] = useState(false);
   const handlePressStart = useCallback(event => {
     setActive(true);
@@ -56,7 +56,7 @@ export default function Button({ icon, text, onPress }) {
       onPressIn={handlePressStart}
       onPressOut={handlePressEnd}
     >
-      <View style={[styles.button, active && styles.buttonActive]}>
+      <View style={[style || styles.button, active && (activeStyle || styles.buttonActive)]}>
         {icon && <Ionicons name={icon} style={[styles.buttonIcon, active && styles.buttonIconActive]} />}
         {text && <Text style={[styles.buttonText, active && styles.buttonTextActive]}>{text}</Text>}
       </View>

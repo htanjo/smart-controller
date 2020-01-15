@@ -3,8 +3,7 @@ import { StyleSheet, View, Vibration } from 'react-native';
 import { vw } from 'react-native-expo-viewport-units';
 import Indicator from './Indicator';
 import Button from './Button';
-import ButtonStacked from './ButtonStacked';
-import ButtonCombined from './ButtonCombined';
+import ButtonGroup from './ButtonGroup';
 import Action from './Action';
 import { gutterSize } from './styles';
 
@@ -77,15 +76,15 @@ export default function Controller({ api, vibration, connected, onPressSetting }
       </View>
       <View style={styles.buttons}>
         <View style={styles.row}>
-          <ButtonStacked buttons={[
-            { icon: 'ios-arrow-up', onPress: () => handlePress('tvChannelUp') },
-            { icon: 'ios-arrow-down', onPress: () => handlePress('tvChannelDown') }
-          ]} />
+          <ButtonGroup vertical={true}>
+            <Button icon="ios-arrow-up" onPress={() => handlePress('tvChannelUp')} />
+            <Button icon="ios-arrow-down" onPress={() => handlePress('tvChannelDown')} />
+          </ButtonGroup>
           <Button icon="md-tv" onPress={() => handlePress('tvPowerToggle')} />
-          <ButtonStacked buttons={[
-            { icon: 'md-add', onPress: () => handlePress('tvVolumeUp') },
-            { icon: 'md-remove', onPress: () => handlePress('tvVolumeDown') }
-          ]} />
+          <ButtonGroup vertical={true}>
+            <Button icon="md-add" onPress={() => handlePress('tvVolumeUp')} />
+            <Button icon="md-remove" onPress={() => handlePress('tvVolumeDown')} />
+          </ButtonGroup>
         </View>
         <View style={styles.row}>
           <Button icon="ios-snow" onPress={() => handlePress('acCoolingOn')} />
@@ -93,14 +92,14 @@ export default function Controller({ api, vibration, connected, onPressSetting }
           <Button text="OFF" onPress={() => handlePress('acOff')} />
         </View>
         <View style={styles.row}>
-          <ButtonCombined buttons={[
-            { text: 'OFF', onPress: () => handlePress('livingLightOff') },
-            { icon: 'md-sunny', onPress: () => handlePress('livingLightOn') }
-          ]} />
-          <ButtonCombined buttons={[
-            { text: 'OFF', onPress: () => handlePress('bedroomLightOff') },
-            { icon: 'md-sunny', onPress: () => handlePress('bedroomLightOn') }
-          ]} />
+          <ButtonGroup>
+            <Button text="OFF" onPress={() => handlePress('livingLightOff')} />
+            <Button icon="md-sunny" onPress={() => handlePress('livingLightOn')} />
+          </ButtonGroup>
+          <ButtonGroup>
+            <Button text="OFF" onPress={() => handlePress('bedroomLightOff')} />
+            <Button icon="md-sunny" onPress={() => handlePress('bedroomLightOn')} />
+          </ButtonGroup>
         </View>
       </View>
       <View style={styles.action}>
