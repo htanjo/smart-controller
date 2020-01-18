@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 export default function App() {
   const [settingVisible, setSettingVisible] = useState(false);
   const [settings, setSettings] = useState(null);
+
   const showSetting = useCallback(() => {
     setSettingVisible(true);
   }, []);
@@ -51,14 +52,23 @@ export default function App() {
     }
     setSettings(values);
   }, 1000), []);
+
   useEffect(() => {
     readSettings();
   }, []);
-  if (!settings) return null;
+
+  if (!settings) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" />
+      </SafeAreaView>
+    );
+  }
+
   return (
     <NetworkProvider pingServerUrl={settings.api}>
-      <StatusBar barStyle="light-content" />
       <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <NetworkConsumer>
           {({ isConnected }) => (
             <Controller
