@@ -28,6 +28,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.htanjo.smartcontroller",
       "permissions": [
         "VIBRATE"
       ]
