@@ -66,7 +66,7 @@ export default function App() {
   }
 
   return (
-    <NetworkProvider pingServerUrl={settings.api}>
+    <NetworkProvider pingServerUrl={settings.api} pingTimeout={3000}>
       <SafeAreaView style={styles.container}>
         <StatusBar barStyle="light-content" />
         <NetworkConsumer>
