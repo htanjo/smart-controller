@@ -2,7 +2,8 @@
   "expo": {
     "name": "Smart Controller",
     "slug": "smart-controller",
-    "privacy": "public",
+    "backgroundColor": "#202020",
+    "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
