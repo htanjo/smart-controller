@@ -1,6 +1,8 @@
-import React, { cloneElement, Children } from 'react';
+import React, { cloneElement, Children, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
+import ButtonShadow from './ButtonShadow';
 import {
+  roundSize,
   buttonSize,
   buttonGroupSize,
   buttonOuterStyles,
@@ -67,23 +69,29 @@ const styles = StyleSheet.create({
 });
 
 export default function ButtonGroup({ vertical = false, children }) {
+  const width = useMemo(() => vertical ? buttonSize : buttonGroupSize, [vertical]);
+  const height = useMemo(() => vertical ? buttonGroupSize : buttonSize, [vertical]);
   return (
-    <View style={vertical ? styles.buttonGroupVertical : styles.buttonGroup}>
-      {Children.map(children, (child, index) => {
-        let newProps;
-        if (vertical) {
-          newProps = {
-            style: index === 0 ? styles.buttonGroupVerticalInnerFirst : styles.buttonGroupVerticalInnerLast,
-            activeStyle: styles.buttonGroupVerticalInnerActive,
-          };
-        } else {
-          newProps = {
-            style: index === 0 ? styles.buttonGroupInnerFirst : styles.buttonGroupInnerLast,
-            activeStyle: styles.buttonGroupInnerActive,
-          };
-        }
-        return cloneElement(child, newProps);
-      })}
-    </View>
+    <ButtonShadow width={width} height={height} borderRadius={roundSize}>
+      <View style={vertical ? styles.buttonGroupVertical : styles.buttonGroup}>
+        {Children.map(children, (child, index) => {
+          let newProps;
+          if (vertical) {
+            newProps = {
+              style: index === 0 ? styles.buttonGroupVerticalInnerFirst : styles.buttonGroupVerticalInnerLast,
+              activeStyle: styles.buttonGroupVerticalInnerActive,
+              shadow: false,
+            };
+          } else {
+            newProps = {
+              style: index === 0 ? styles.buttonGroupInnerFirst : styles.buttonGroupInnerLast,
+              activeStyle: styles.buttonGroupInnerActive,
+              shadow: false,
+            };
+          }
+          return cloneElement(child, newProps);
+        })}
+      </View>
+    </ButtonShadow>
   );
 }

@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { vw } from 'react-native-expo-viewport-units';
 
-const activeColor = 'hsl(190,50%,40%)';
-const errorColor = 'hsl(350,55%,50%)';
+const activeColor = 'hsl(190,40%,50%)';
+const errorColor = 'hsl(350,45%,50%)';
 const styles = StyleSheet.create({
   indicator: {
     alignItems: 'center',
@@ -33,14 +33,15 @@ const flash = {
     scale: 1,
   },
   0.25: {
-    backgroundColor: 'hsl(70,70%,90%)',
+    backgroundColor: 'hsl(70,60%,50%)',
     scale: 1.6,
   },
   0.5: {
-    backgroundColor: 'hsl(50,65%,50%)',
+    backgroundColor: 'hsl(50,50%,50%)',
   },
   0.75: {
-    backgroundColor: 'hsl(-20,55%,50%)',
+    backgroundColor: 'hsl(-20,40%,50%)',
+    scale: 1,
   },
   1: {
     backgroundColor: activeColor,

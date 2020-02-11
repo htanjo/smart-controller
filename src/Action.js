@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     fontSize: vw(8),
-    color: 'rgba(255,255,255,0.2)',
+    color: '#bbc7c9',
   },
 });
 

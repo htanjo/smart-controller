@@ -2,7 +2,7 @@
   "expo": {
     "name": "Smart Controller",
     "slug": "smart-controller",
-    "backgroundColor": "#202020",
+    "backgroundColor": "#dde0e0",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
@@ -12,12 +12,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "primaryColor": "#202020",
+    "primaryColor": "#dde0e0",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#202020"
+      "backgroundColor": "#dde0e0"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -33,6 +32,10 @@
       "permissions": [
         "VIBRATE"
       ]
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#000"
     }
   }
 }

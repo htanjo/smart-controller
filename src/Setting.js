@@ -5,7 +5,9 @@ import Action from './Action';
 
 const styles = StyleSheet.create({
   setting: {
-    backgroundColor: '#363636',
+    borderTopLeftRadius: vw(2 / 26 * 100),
+    borderTopRightRadius: vw(2 / 26 * 100),
+    backgroundColor: '#dde0e0',
   },
   scrollView: {
     flexDirection: 'column',
@@ -14,10 +16,8 @@ const styles = StyleSheet.create({
   },
   form: {
     justifyContent: 'center',
-    paddingTop: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 10,
+    paddingVertical: vw(1 / 26 * 100),
+    paddingHorizontal: vw(2 / 26 * 100),
   },
   formGroup: {
     marginTop: 8,
@@ -32,19 +32,21 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
     fontSize: 16,
-    color: '#fff',
+    color: '#6b5e5c',
   },
   input: {
-    padding: 4,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
     borderBottomWidth: 1,
-    borderColor: '#666',
-    fontSize: 14,
-    color: '#bbb',
-    backgroundColor: 'rgba(255,255,255,0.07)',
+    borderColor: '#a59d9b',
+    fontSize: 13,
+    color: '#6b5e5c',
+    backgroundColor: '#d6dadb',
   },
   inputFocus: {
-    borderColor: 'hsl(190,50%,40%)',
-    color: '#fff',
+    borderBottomWidth: 2,
+    borderColor: 'hsl(190,40%,50%)',
+    backgroundColor: '#e8ebeb',
   },
   action: {
     flexDirection: 'column',

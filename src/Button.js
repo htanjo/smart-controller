@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import ButtonShadow from './ButtonShadow';
 import {
+  roundSize,
   buttonSize,
   buttonOuterStyles,
   buttonInnerStyles,
@@ -40,7 +42,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Button({ icon, text, style, activeStyle, onPress }) {
+export default function Button({ icon, text, style, activeStyle, shadow = true, onPress }) {
   const [active, setActive] = useState(false);
   const handlePressStart = useCallback(event => {
     setActive(true);
@@ -49,7 +51,7 @@ export default function Button({ icon, text, style, activeStyle, onPress }) {
   const handlePressEnd = useCallback(() => {
     setActive(false);
   }, []);
-  return (
+  const button = (
     <TouchableWithoutFeedback
       activeOpacity={1}
       underlayColor={buttonColorActive}
@@ -62,4 +64,12 @@ export default function Button({ icon, text, style, activeStyle, onPress }) {
       </View>
     </TouchableWithoutFeedback>
   );
+  if (shadow) {
+    return (
+      <ButtonShadow width={buttonSize} height={buttonSize} borderRadius={roundSize}>
+        {button}
+      </ButtonShadow>
+    )
+  }
+  return button;
 }

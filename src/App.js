@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { StyleSheet, AsyncStorage, StatusBar, SafeAreaView } from 'react-native';
 import { NetworkProvider, NetworkConsumer } from 'react-native-offline';
+import { vh } from 'react-native-expo-viewport-units';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import Modal from "react-native-modal";
 import { throttle } from 'lodash';
@@ -14,8 +15,8 @@ const defaultSettings = {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingTop: getStatusBarHeight(),
-    backgroundColor: '#202020',
+    backgroundColor: '#dde0e0',
+    height: vh(100) - getStatusBarHeight(),
   },
   modal: {
     margin: 0,
@@ -60,7 +61,7 @@ export default function App() {
   if (!settings) {
     return (
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
       </SafeAreaView>
     );
   }
@@ -68,7 +69,7 @@ export default function App() {
   return (
     <NetworkProvider pingServerUrl={settings.api} pingTimeout={3000}>
       <SafeAreaView style={styles.container}>
-        <StatusBar barStyle="light-content" />
+        <StatusBar barStyle="light-content" backgroundColor="#000" />
         <NetworkConsumer>
           {({ isConnected }) => (
             <Controller
@@ -85,6 +86,8 @@ export default function App() {
         animationInTiming={250}
         animationOutTiming={250}
         hasBackdrop={true}
+        backdropColor="#234247"
+        backdropOpacity={0.2}
         useNativeDriver={true}
         onBackButtonPress={hideSetting}
         onBackdropPress={hideSetting}
