@@ -6,7 +6,7 @@ export default function ButtonShadow({ width, height, borderRadius, children }) 
   return (
     <NeomorphBox
       darkShadowColor="#cdd4d6"
-      lightShadowColor="#edf2f2"
+      lightShadowColor="#ebf0f0"
       style={{
         width,
         height,

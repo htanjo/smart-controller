@@ -37,15 +37,17 @@ const styles = StyleSheet.create({
   input: {
     paddingVertical: 4,
     paddingHorizontal: 8,
-    borderBottomWidth: 1,
-    borderColor: '#a59d9b',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderTopColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderRadius: 4,
     fontSize: 13,
     color: '#6b5e5c',
-    backgroundColor: '#d6dadb',
+    backgroundColor: '#d0d6d6',
   },
   inputFocus: {
-    borderBottomWidth: 2,
-    borderColor: 'hsl(190,40%,50%)',
+    borderBottomColor: 'hsl(190,40%,50%)',
     backgroundColor: '#e8ebeb',
   },
   action: {
