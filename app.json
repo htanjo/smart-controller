@@ -14,10 +14,6 @@
     "orientation": "portrait",
     "primaryColor": "#bbc7c9",
     "icon": "./assets/icon.png",
-    "adaptiveIcon": {
-      "foregroundImage": "./assets/icon_fg.png",
-      "backgroundImage": "./assets/icon_bg.png"
-    },
     "splash": {
       "resizeMode": "contain",
       "backgroundColor": "#dde0e0"
@@ -33,7 +29,11 @@
     },
     "android": {
       "package": "com.htanjo.smartcontroller",
-      "permissions": [
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon_fg.png",
+        "backgroundImage": "./assets/icon_bg.png"
+      },
+        "permissions": [
         "VIBRATE"
       ]
     },
